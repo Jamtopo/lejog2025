@@ -28811,10 +28811,11 @@
         }
       });
       i++;
-      setTimeout(animateMarker, 50);
+      setTimeout(animateMarker, 10);
     }
   }
-  setTimeout(animateMarker, 100);
+  map.setView(routeCoordinates[0], 12, { animate: true });
+  setTimeout(animateMarker, 2000);
 </script>
 </body>
 </html>
