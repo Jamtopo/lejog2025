@@ -555,24 +555,31 @@
     setTimeout(animateMarker, 1000);
   }, 300);
 
-  function animateMarker() {
-    if (i < routeCoordinates.length) {
-      const point = routeCoordinates[i];
-      marker.setLatLng(point);
-      map.panTo(point, { animate: true, duration: 0.25 });
-      stopMarkers.forEach(stop => {
-        if (!placedStops.has(stop.label) &&
-            Math.abs(stop.coord[0] - point[0]) < 0.0005 &&
-            Math.abs(stop.coord[1] - point[1]) < 0.0005) {
-          L.marker(stop.coord).addTo(map)
-            .bindPopup(stop.label).openPopup();
-          placedStops.add(stop.label);
-        }
-      });
-      i++;
-      setTimeout(animateMarker, 100);
-    }
+function animateMarker() {
+  if (i < routeCoordinates.length) {
+    const point = routeCoordinates[i];
+    marker.setLatLng(point);
+    map.panTo(point, { animate: true, duration: 0.25 });
+    stopMarkers.forEach(stop => {
+      if (!placedStops.has(stop.label) &&
+          Math.abs(stop.coord[0] - point[0]) < 0.0005 &&
+          Math.abs(stop.coord[1] - point[1]) < 0.0005) {
+        L.marker(stop.coord).addTo(map)
+          .bindPopup(stop.label).openPopup();
+        placedStops.add(stop.label);
+      }
+    });
+    i++;
+    setTimeout(animateMarker, 100);
+  } else {
+    const bounds = L.latLngBounds(routeCoordinates);
+    map.flyToBounds(bounds, {
+      padding: [50, 50],
+      animate: true,
+      duration: 3
+    });
   }
+}
 </script>
 </body>
 </html>
