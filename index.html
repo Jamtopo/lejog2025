@@ -570,7 +570,7 @@ function animateMarker() {
       }
     });
     i++;
-    setTimeout(animateMarker, 100);
+    setTimeout(animateMarker, 50);
   } else {
     const bounds = L.latLngBounds(routeCoordinates);
     map.flyToBounds(bounds, {
