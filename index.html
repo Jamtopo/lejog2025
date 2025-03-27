@@ -29086,12 +29086,12 @@ const dailyStops = [
     let i = 0;
     function fly() {
       if (i < coordinates.length) {
-        map.flyTo({ center: coordinates[i], zoom: 10, speed: 0.5, curve: 1, essential: true });
+        map.flyTo({ center: coordinates[i], zoom: 10, speed: 1.5, curve: 1, essential: true });
         i++;
-        setTimeout(fly, 1000);
+        setTimeout(fly, 10);
       }
     }
-    setTimeout(fly, 2000);
+    setTimeout(fly, 200);
   });
 </script>
 </body>
